@@ -16,14 +16,13 @@ public class App {
         idade = leia.nextInt();
 
         do {
-
-            // lista de filmes
+            // Lista de filmes
             System.out.println("\nEscolha um filme:");
             System.out.println("1 - Deadpool 2 (+16)");
             System.out.println("2 - Massacre da Serra Elétrica (+18)");
             System.out.println("3 - Xou da Xuxa (Livre)");
-            System.out.println("4 - hora de aventura (+12)");
-            System.out.println("5 - rei leão (+12)");
+            System.out.println("4 - Hora de Aventura (+12)");
+            System.out.println("5 - Apenas um Show (+10)");
             System.out.println("6 - Sair");
             System.out.print("Selecione uma opção: ");
             opcao = leia.nextInt();
@@ -31,32 +30,47 @@ public class App {
             switch (opcao) {
                 case 1:
                     if (idade >= 16) {
-                        System.out.println(nome + "Ingresso liberado para Deadpool 2!");
+                        System.out.println("Ingresso liberado para Deadpool 2!");
+                        System.exit(0);
                     } else {
-                        System.out.println(nome +"Você não tem idade suficiente para esse filme.");
+                        System.out.println("Você não tem idade suficiente para esse filme.");
                     }
                     break;
 
                 case 2:
                     if (idade >= 18) {
-                        System.out.println(nome +"Ingresso liberado para Massacre da Serra Elétrica!");
+                        System.out.println("Ingresso liberado para Massacre da Serra Elétrica!");
+                        System.exit(0);
                     } else {
-                        System.out.println(nome +"Você não tem idade suficiente para esse filme.");
+                        System.out.println("Você não tem idade suficiente para esse filme.");
                     }
                     break;
 
                 case 3:
-                    System.out.println(nome +"Ingresso liberado para Xou da Xuxa!");
+                    System.out.println("Ingresso liberado para Xou da Xuxa!");
+                    System.exit(0);
                     break;
 
                 case 4:
-                    System.out.println(nome +"Ingresso liberado para hora de aventura...");
+                    if (idade >= 12) {
+                        System.out.println("Ingresso liberado para Hora de Aventura!");
+                        System.exit(0);
+                    } else {
+                        System.out.println("Você não tem idade suficiente para esse filme.");
+                    }
                     break;
+
                 case 5:
-                    System.out.println(nome +"Ingresso liberado para rei leão...");
+                    if (idade >= 10) {
+                        System.out.println("Ingresso liberado para Apenas um Show!");
+                        System.exit(0);
+                    } else {
+                        System.out.println("Você não tem idade suficiente para esse filme.");
+                    }
                     break;
+
                 case 6:
-                    System.out.println(nome +"Saindo do programa...");
+                    System.out.println("Saindo do programa...");
                     break;
 
                 default:
