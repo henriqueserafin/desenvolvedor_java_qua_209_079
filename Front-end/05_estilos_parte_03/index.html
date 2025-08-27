@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+</head>
+<body>
+    <h1>Formulário com CSS</h1>
+    <hr>
+    <form method="">
+        <input type="text" placeholder="Nome" class="nome"/>
+        <input type="text" placeholder="Sobrenome" class="sobrenome"/>
+        <input type="tel" placeholder="telefone: (00) 0000-0000" />
+        <input type="email" placeholder="email: usuario@email.com" />
+        <select>
+            <option>Informe o genero...</option>
+            <option>masculino</option>
+            <option>feminino</option>
+            <option>outro</option>
+            <option>não desejo informar</option>
+        </select>
+        <!-- acresente escolaridade, profissão e cursos do senai djá feito (lista de 10) -->
+        <select>
+            <option>Informe a escolaridade...</option>
+            <option>Fundamental incompleto</option>
+            <option>Fundamental completo</option>
+            <option>Médio incompleto</option>
+            <option>Médio completo</option>
+            <option>Superior incompleto</option>
+            <option>Superior completo</option>
+            <option>Pós-graduação</option>
+        </select>
+        <input type="text" placeholder="Profissão" />
+
+        <label for="cursos-senai">Cursos do SENAI já feitos:</label>
+        <select id="cursos-senai" multiple size="5">
+            <option>Informática Básica</option>
+            <option>Programação Java</option>
+            <option>Eletricista Instalador</option>
+            <option>Soldagem</option>
+            <option>Desenhista Técnico</option>
+            <option>Automação Industrial</option>
+            <option>Manutenção de Computadores</option>
+            <option>Logística</option>
+            <option>Segurança do Trabalho</option>
+            <option>Administração</option>
+        </select>
+        <input type="text" placeholder="Endereço">
+        <button type="submit">enviar</button>
+    </form>
+</body>
+</html>
