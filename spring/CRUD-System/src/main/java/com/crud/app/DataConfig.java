@@ -20,7 +20,9 @@ public class DataConfig {
         dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/db_java");
         dataSource.setUsername("root");
         dataSource.setPassword("");
-        return DataSource();
+        //FIXME - 
+        return dataSource;
+        //return DataSource();
     }
     @Bean
     public JpaVendorAdapter jpaVendorAdapter(){
@@ -28,7 +30,9 @@ public class DataConfig {
         adapter.setDatabase(Database.MYSQL);
         adapter.setShowSql(true);
         adapter.setGenerateDdl(true);
-        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
+        //FIXME - 
+        adapter.setDatabasePlatform("org.hibernate.dialect.MySQL8Dialect");
+        //adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5Dialect");
         adapter.setPrepareConnection(true);
 
         return adapter;
