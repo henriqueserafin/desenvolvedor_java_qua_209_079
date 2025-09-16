@@ -49,36 +49,39 @@
                 <div class="row">
                     <div class="col-sm-8"><h2><b>Usuarios</b></h2></div>
                     <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new"><i class="fa fa-plus"></i> Adcionar</button>
+                        <button type="button" class="btn btn-info add-new">
+                            <i class="fa fa-plus"></i> Adicionar
+                        </button>
                     </div>
                 </div>
             </div>
-            <table class="table table-bordered">
+            <table class="table table-bordered" style="table-layout: auto; width: 100%;">
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>nome</th>
-                        <th>email</th>
-                        <th>cpf</th>
-                        <th>ações</th>
+                        <th style="width: 5%;">id</th>
+                        <th style="min-width: 180px;">nome</th>
+                        <th style="min-width: 220px;">email</th>
+                        <th style="min-width: 150px;">cpf</th>
+                        <th style="width: 100px;">ações</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="usuario:${usuarios}">
-                        <td><span th:text="${usuario.idPessoa}"> </span></td>
-                        <td><span th:text="${usuario.nome}"> </span></td>
-                        <td><span th:text="${usuario.email}"> </span></td>
-                        <td><span th:text="${usuario.cpf}"> </span></td>
+                        <td><span th:text="${usuario.idPessoa}"></span></td>
+                        <td><span th:text="${usuario.nome}"></span></td>
+                        <td style="word-wrap: break-word;"><span th:text="${usuario.email}"></span></td>
+                        <td><span th:text="${usuario.cpf}"></span></td>
                         <td>
                             <a class="add" title="adicionar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                             <a class="edit" title="editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
                             <a class="delete" title="deletar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
                         </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    maldição do farao
+</div>
 </div>
 <script src="js/listar.js"></script>     
 </body>
