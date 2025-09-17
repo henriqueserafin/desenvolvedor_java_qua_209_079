@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout" data-bs-theme="dark" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sistema de login </title>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body class="d-flex align-items-center py-4 bg-body-tertiary h-100">
+    <main class="w-100 m-auto form-container"> <!-- Width de 100%, com margin automática (Para centralizar) e com uso de form-container -->
+                <form method="post">
+                    <img src="img/java.png" class="mb-4" height="70">
+                    <h1 class="h3 mb-3 fw-normal">Alterar Dados do Usuário</h1> <!-- usamos h1 para manter a semântica do projeto, enquanto o bootstrap transforma em h3, 
+                    e fw-normal define o peso da fonte -->
+                    <div class="form-floating">
+                        <label for="floatingInput" class="form-label">Nome</label>
+                        <br>
+                        <br>
+                        <input type="nome" name="nome" class="form-control" id="floatingInput" placeholder="seu nome" th:value="${usuario.nome}" required>
+                    </div>
+                    <div class="form-floating">
+                        <label for="floatingInput" class="form-label">CPF</label>
+                        <br>
+                        <br>
+                        <input type="cpf" name="cpf" class="form-control" id="floatingInput" placeholder="seu CPF" th:value="${usuario.cpf}" required>
+                    </div>
+                    <div class="form-floating">
+                        <label for="floatingInput" class="form-label">E-mail</label>
+                        <br>
+                        <br>
+                        <input type="email" name="email" class="form-control" id="floatingInput" placeholder="seu-email@gmail.com" th:value="${usuario.email}" required>
+                    </div>
+                    <!-- <div class="form-floating">
+                        <label for="floatingInput" class="form-label">Senha</label>
+                        <br><br>
+                        <input type="password" class="form-control" id="floatingInput" placeholder="sua senha">
+                    </div> -->
+                    <div class="form-check text-start my-3"> <!-- form-check para checagem do forms, text-start começa o texto a esquerda do elemento, e my-3
+                        adiciona um espaçamento externo encima e embaixo de 3 -->
+
+                    </div>
+                    <button submit="button" class="btn btn-primary w-100 py-2">
+                        cadastrar
+                    </button>
+                    <!-- <button type="submit" href="#">Enviar</button> -->
+                    <a href="/" class="btn btn-primary btn-primary w-100 py-2" method="post">home</a>
+                    
+                </form>
+    </main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

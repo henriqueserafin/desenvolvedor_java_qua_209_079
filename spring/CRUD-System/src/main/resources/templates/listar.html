@@ -72,9 +72,10 @@
                         <td style="word-wrap: break-word;"><span th:text="${usuario.email}"></span></td>
                         <td><span th:text="${usuario.cpf}"></span></td>
                         <td>
-                            <a class="add" title="adicionar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
-                            <a class="edit" title="editar" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                            <a class="delete" title="deletar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                            <!-- <a class="add" title="adicionar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
+                            <a class="btn btn-waning" title="editar" role="button" th:ref="${(#mvc.url('CC#alterarUsuario').arg(0, usuario.idPessoa)).build()}" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
+                            <div> <a class="btn btn-waning" role="button" th:href="@{'/alterarUsuario/'+ ${usuario.idPessoa}}" data-toggle="tooltip"><i class="material-icons">&#xE254</a></div>
+                            <!-- <a class="delete" title="deletar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a> -->
                         </td>
                     </tr>
                 </tbody>
