@@ -74,7 +74,8 @@
                         <td>
                             <!-- <a class="add" title="adicionar" data-toggle="tooltip"><i class="material-icons">&#xE03B;</i></a>
                             <a class="btn btn-waning" title="editar" role="button" th:ref="${(#mvc.url('CC#alterarUsuario').arg(0, usuario.idPessoa)).build()}" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a> -->
-                            <div> <a class="btn btn-waning" role="button" th:href="@{'/alterarUsuario/'+ ${usuario.idPessoa}}" data-toggle="tooltip"><i class="material-icons">&#xE254</a></div>
+                            <div> <a class="btn btn-waning" role="button" th:href="@{'/alterarUsuario/'+ ${usuario.idPessoa}}" data-toggle="tooltip"><i class="material-icons">&#xE254</i></a></div>
+                            <div> <a class="btn btn-danger" role="button" th:href="@{'/confirmarExclusao/'+ ${usuario.idPessoa}}" data-toggle="tooltip"><i class="material-icons">&#xE872</i></a></div>
                             <!-- <a class="delete" title="deletar" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a> -->
                         </td>
                     </tr>
