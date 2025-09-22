@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>Confirmar exclusão de <span th:text="${usuario.nome}"></span></h1>
-    <form th:action="@{/excluirUsuario}" method="get">
+    <form th:action="@{/excluirUsuario}" method="POST">
         <input type="hidden" name="idPessoa" th:value="${usuario.idPessoa}" />
         <button type="submit" class="btn btn-danger">Excluir</button>
         <a href="/listar" class="btn btn-secondary">Cancelar</a>

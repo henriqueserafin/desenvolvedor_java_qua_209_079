@@ -5,6 +5,20 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.atividade09.app.App",
+            "projectName": "desenvolvedor_java_qua_209_079_caf8d6f2"
+        },
+        {
+            "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "com.atividade06.app.App",
+            "projectName": "desenvolvedor_java_qua_209_079_caf8d6f2"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
