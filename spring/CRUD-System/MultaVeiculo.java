@@ -11,7 +11,6 @@ public class MultaVeiculo {
                 JOptionPane.QUESTION_MESSAGE
             );
             
-            // Recebe a velocidade no primeiro pardal
             String velocidade1Str = JOptionPane.showInputDialog(
                 null, 
                 "Digite a velocidade no primeiro pardal (km/h):", 
@@ -20,7 +19,6 @@ public class MultaVeiculo {
             );
             double velocidade1 = Double.parseDouble(velocidade1Str);
             
-            // Recebe a velocidade no segundo pardal
             String velocidade2Str = JOptionPane.showInputDialog(
                 null, 
                 "Digite a velocidade no segundo pardal (km/h):", 
@@ -29,7 +27,6 @@ public class MultaVeiculo {
             );
             double velocidade2 = Double.parseDouble(velocidade2Str);
             
-            // Recebe a distância entre os pardais
             String distanciaStr = JOptionPane.showInputDialog(
                 null, 
                 "Digite a distância entre os pardais (metros):", 
