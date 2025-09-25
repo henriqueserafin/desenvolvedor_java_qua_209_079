@@ -8,11 +8,11 @@
 		<version>3.5.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.app</groupId>
+	<groupId>com.projeto_final</groupId>
 	<artifactId>projeto_final</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>projeto_final</name>
-	<description>Projeto final do curso desenvolvedor Java</description>
+	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>

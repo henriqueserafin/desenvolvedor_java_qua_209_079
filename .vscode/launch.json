@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SpringTailwindcssApplication",
+            "request": "launch",
+            "mainClass": "br.com.treinaweb.springtailwindcss.SpringTailwindcssApplication",
+            "projectName": "spring-tailwindcss"
+        },
+        {
+            "type": "java",
             "name": "App",
             "request": "launch",
             "mainClass": "com.atividade09.app.App",

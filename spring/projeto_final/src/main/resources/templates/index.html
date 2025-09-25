@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://thymeleaf.org" xmlns:layout="https://ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare - Sistema Veterinário</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+  <link href="/css/output.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
+  <!-- Header -->
+  <header th:replace="modules/navbar :: navbar"></header>
+
+  <!-- Main Content -->
+  <main class="container mx-auto px-6 py-12">
+    <!-- Welcome Section -->
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold text-gray-800 mb-4">Sistema de Gestão Veterinária</h2>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Gerencie sua clínica veterinária de forma eficiente com nosso sistema completo
+      </p>
+    </div>
+
+    <!-- CRUD Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Pets Card -->
+      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border-t-4 border-blue-500">
+        <div class="text-center">
+          <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-dog text-2xl text-blue-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Pets</h3>
+          <p class="text-gray-600 mb-4">Cadastro e gerenciamento de animais</p>
+          <div class="space-y-2">
+            <a href="/pets"
+              class="block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+              <i class="fas fa-list mr-2"></i>Listar
+            </a>
+            <a href="/pets/novo"
+              class="block bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+              <i class="fas fa-plus mr-2"></i>Cadastrar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clientes Card -->
+      <div
+        class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border-t-4 border-green-500">
+        <div class="text-center">
+          <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-2xl text-green-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Clientes</h3>
+          <p class="text-gray-600 mb-4">Gestão de proprietários</p>
+          <div class="space-y-2">
+            <a href="/clientes"
+              class="block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+              <i class="fas fa-list mr-2"></i>Listar
+            </a>
+            <a href="/clientes/novo"
+              class="block bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+              <i class="fas fa-plus mr-2"></i>Cadastrar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Veterinários Card -->
+      <div
+        class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border-t-4 border-purple-500">
+        <div class="text-center">
+          <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-user-md text-2xl text-purple-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Veterinários</h3>
+          <p class="text-gray-600 mb-4">Cadastro de profissionais</p>
+          <div class="space-y-2">
+            <a href="/veterinarios"
+              class="block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+              <i class="fas fa-list mr-2"></i>Listar
+            </a>
+            <a href="/veterinarios/novo"
+              class="block bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+              <i class="fas fa-plus mr-2"></i>Cadastrar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Consultas Card -->
+      <div
+        class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border-t-4 border-orange-500">
+        <div class="text-center">
+          <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-calendar-alt text-2xl text-orange-600"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Consultas</h3>
+          <p class="text-gray-600 mb-4">Agendamento e histórico</p>
+          <div class="space-y-2">
+            <a href="/consultas"
+              class="block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+              <i class="fas fa-list mr-2"></i>Listar
+            </a>
+            <a href="/consultas/nova"
+              class="block bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
+              <i class="fas fa-plus mr-2"></i>Agendar
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="bg-white rounded-xl shadow-lg p-8 mb-8">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Resumo do Sistema</h3>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div class="text-3xl font-bold text-blue-600 mb-2">127</div>
+          <div class="text-gray-600">Pets Cadastrados</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-green-600 mb-2">89</div>
+          <div class="text-gray-600">Clientes Ativos</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-purple-600 mb-2">12</div>
+          <div class="text-gray-600">Veterinários</div>
+        </div>
+        <div class="text-center">
+          <div class="text-3xl font-bold text-orange-600 mb-2">45</div>
+          <div class="text-gray-600">Consultas Hoje</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="bg-white rounded-xl shadow-lg p-8">
+      <h3 class="text-2xl font-bold text-gray-800 mb-6">Atividades Recentes</h3>
+      <div class="space-y-4">
+        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+          <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center">
+            <i class="fas fa-plus text-blue-600"></i>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-gray-800">Novo pet cadastrado</p>
+            <p class="text-gray-600 text-sm">Rex - Golden Retriever cadastrado por Maria Silva</p>
+          </div>
+          <div class="text-gray-500 text-sm">2 min atrás</div>
+        </div>
+
+        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+          <div class="bg-green-100 w-10 h-10 rounded-full flex items-center justify-center">
+            <i class="fas fa-calendar text-green-600"></i>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-gray-800">Consulta agendada</p>
+            <p class="text-gray-600 text-sm">Mimi - Consulta de rotina com Dr. João</p>
+          </div>
+          <div class="text-gray-500 text-sm">15 min atrás</div>
+        </div>
+
+        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+          <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center">
+            <i class="fas fa-user-md text-purple-600"></i>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-gray-800">Veterinário cadastrado</p>
+            <p class="text-gray-600 text-sm">Dra. Deide Costa - Especialista em felinos</p>
+          </div>
+          <div class="text-gray-500 text-sm">1 hora atrás</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer th:replace="modules/footer :: footer"></footer>
+
+</body>
+
+</html>
