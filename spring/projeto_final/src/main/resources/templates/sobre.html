@@ -11,7 +11,7 @@
 </head>
 
 <body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
-  <header th:replace="modules/navbar :: navbar"></header>
+  <header th:replace="~{modules/navbar :: navbar}"></header>
 
 <main class="flex-grow container mx-auto px-6 py-12">
     <!-- Título -->
@@ -82,7 +82,7 @@
 
 
 
-  <footer th:replace="modules/footer :: footer"></footer>
+  <footer th:replace="~{modules/footer :: footer}"></footer>
 
 </body>
 

@@ -12,7 +12,7 @@
 
 <body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
   <!-- Header -->
-  <header th:replace="modules/navbar :: navbar"></header>
+  <header th:replace="~{modules/navbar :: navbar}"></header>
 
   <!-- Main Content -->
   <main class="container mx-auto px-6 py-12">
@@ -177,7 +177,7 @@
     </div>
   </main>
 
-  <footer th:replace="modules/footer :: footer"></footer>
+  <footer th:replace="~{modules/footer :: footer}"></footer>
 
 </body>
 

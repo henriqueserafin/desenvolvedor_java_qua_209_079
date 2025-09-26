@@ -16,6 +16,11 @@ public class CrudControllers {
         return "sobre";
 
     }
+    @RequestMapping("/contato")
+    public String contato() {
+        return "contato";
+
+    }
 
 
 

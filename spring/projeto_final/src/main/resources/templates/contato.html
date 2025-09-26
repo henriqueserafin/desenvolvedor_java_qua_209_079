@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://thymeleaf.org" xmlns:layout="https://ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare - Contato</title>
+  <link href="/css/output.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header th:replace="~{modules/navbar :: navbar}"></header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-12 bg-gradient-to-r from-blue-50 to-green-50">
+    <h1 class="text-3xl font-bold text-gray-900">Entre em Contato</h1>
+    <p class="mt-2 text-gray-600">Saiba como falar conosco, onde estamos localizados e nossos horários de atendimento.</p>
+  </section>
+
+  <!-- Informações de Contato -->
+  <section class="container mx-auto px-6 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+      <!-- Card de Informações -->
+      <div class="bg-white shadow-lg rounded-lg p-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Informações de Contato</h2>
+        <ul class="space-y-6 text-gray-700">
+
+          <li class="flex items-center space-x-3">
+            <span class="text-2xl">📍</span>
+            <span><strong>Endereço:</strong> Rua das Flores, 123 - Centro, Cidade/Estado</span>
+          </li>
+
+          <li class="flex items-center space-x-3">
+            <span class="text-2xl">📞</span>
+            <span><strong>Telefone:</strong> (11) 99999-9999</span>
+          </li>
+
+          <li class="flex items-center space-x-3">
+            <span class="text-2xl">✉️</span>
+            <span><strong>Email:</strong> contato@vetcare.com</span>
+          </li>
+
+          <li class="flex items-center space-x-3">
+            <span class="text-2xl">⏰</span>
+            <span>
+              <strong>Atendimento:</strong><br>
+              Seg - Sex: 8h às 18h <br>
+              Sáb: 8h às 12h
+            </span>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Card do Mapa -->
+      <div class="bg-white shadow-lg rounded-lg p-8">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Localização</h2>
+        <iframe
+          class="w-full h-64 rounded-lg shadow"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3838.683393769935!2d-48.07228762486923!3d-15.820639684823323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3391b366fc47%3A0x88c16b784a3ad98f!2sSenai%20Taguatinga!5e0!3m2!1spt-BR!2sbr!4v1758902159378!5m2!1spt-BR!2sbr"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer th:replace="~{modules/footer :: footer}"></footer>
+
+</body>
+</html>
