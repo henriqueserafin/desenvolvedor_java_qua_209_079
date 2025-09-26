@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://thymeleaf.org" xmlns:layout="https://ultraq.net.nz/thymeleaf/layout">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VetCare - Contato</title>
+  <link href="/css/output.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- Navbar -->
+  <header th:replace="~{modules/navbar :: navbar}"></header>
+
+  <!-- Hero Section -->
+  <section class="text-center py-12 bg-gradient-to-r from-blue-50 to-green-50">
+    <h1 class="text-3xl font-bold text-gray-900">Entre em Contato</h1>
+    <p class="mt-2 text-gray-600">Fale conosco para tirar dúvidas, marcar consultas ou saber mais sobre nossos serviços.</p>
+  </section>
+
+  <!-- Contato -->
+  <section class="container mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-2 gap-10">
+    
+    <!-- Formulário -->
+    <div class="bg-white shadow-lg rounded-lg p-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Envie uma Mensagem</h2>
+      <form action="#" method="POST" class="space-y-4">
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Nome</label>
+          <input type="text" placeholder="Seu nome" class="w-full mt-1 p-3 border rounded-lg focus:ring focus:ring-blue-200 focus:border-blue-400" required>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">E-mail</label>
+          <input type="email" placeholder="seuemail@email.com" class="w-full mt-1 p-3 border rounded-lg focus:ring focus:ring-blue-200 focus:border-blue-400" required>
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Telefone</label>
+          <input type="tel" placeholder="(00) 00000-0000" class="w-full mt-1 p-3 border rounded-lg focus:ring focus:ring-blue-200 focus:border-blue-400">
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Mensagem</label>
+          <textarea rows="4" placeholder="Digite sua mensagem" class="w-full mt-1 p-3 border rounded-lg focus:ring focus:ring-blue-200 focus:border-blue-400" required></textarea>
+        </div>
+        
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition">Enviar</button>
+      </form>
+    </div>
+
+    <!-- Informações de Contato -->
+    <div class="bg-white shadow-lg rounded-lg p-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-6">Informações</h2>
+      <ul class="space-y-4 text-gray-700">
+        <li>
+          📍 <strong>Endereço:</strong> Rua das Flores, 123 - Centro, Cidade/Estado
+        </li>
+        <li>
+          📞 <strong>Telefone:</strong> (11) 99999-9999
+        </li>
+        <li>
+          ✉️ <strong>Email:</strong> contato@vetcare.com
+        </li>
+        <li>
+          ⏰ <strong>Horário de Atendimento:</strong> Seg - Sex: 8h às 18h <br> Sáb: 8h às 12h
+        </li>
+      </ul>
+
+      <!-- Mapa (Google Maps Embed) -->
+      <div class="mt-6">
+        <iframe class="w-full h-64 rounded-lg shadow" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.852848228769!2d-46.66232588445407!3d-23.54665386690011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59cabd3d6b05%3A0x7efc9d49f3ef8f73!2sAv.%20Paulista!5e0!3m2!1spt-BR!2sbr!4v1614219196006!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->

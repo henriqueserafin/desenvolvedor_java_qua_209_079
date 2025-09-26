@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Pets</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+<header th:replace="~{modules/navbar :: navbar}"></header>
+
+<main class="max-w-6xl mx-auto mt-8">
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold">Pets</h1>
+        <a href="/pets/novo" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Novo Pet</a>
+    </div>
+
+    <table class="table-auto w-full bg-white shadow-md rounded border">
+        <thead class="bg-gray-200 text-left">
+        <tr>
+            <th class="px-4 py-2">Nome</th>
+            <th class="px-4 py-2">Espécie</th>
+            <th class="px-4 py-2">Raça</th>
+            <th class="px-4 py-2">Idade</th>
+            <th class="px-4 py-2">Proprietário</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pet : ${pets}" class="border-t">
+            <td class="px-4 py-2" th:text="${pet.nome}"></td>
+            <td class="px-4 py-2" th:text="${pet.especie}"></td>
+            <td class="px-4 py-2" th:text="${pet.raca}"></td>
+            <td class="px-4 py-2" th:text="${pet.idade}"></td>
+            <td class="px-4 py-2" th:text="${pet.proprietario.nome}"></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+<footer th:replace="~{modules/footer :: footer}"></footer>
+</body>
+</html>
