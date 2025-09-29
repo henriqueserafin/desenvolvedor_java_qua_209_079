@@ -45,11 +45,14 @@ public class PetController {
         model.addAttribute("pet", pet);
         Iterable<Cliente> clientes = clienteRepository.findAll();
         model.addAttribute("clientes", clientes);
-    return "pets/cadastrar";
+        return "pets/cadastrar";
     }
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Pet pet, RedirectAttributes attrs) {
+    public String salvar(@ModelAttribute Pet pet, @RequestParam Long proprietario, RedirectAttributes attrs) {
+        Cliente cliente = clienteRepository.findById(proprietario)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente inválido: " + proprietario));
+        pet.setProprietario(cliente);
         petRepository.save(pet);
         attrs.addFlashAttribute("mensagem", "Pet salvo com sucesso!");
         return "redirect:/pets/listar";

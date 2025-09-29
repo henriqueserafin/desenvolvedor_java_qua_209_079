@@ -41,7 +41,7 @@ public class ConsultaController {
         return mv;
     }
 
-    @GetMapping("/form")
+    @GetMapping("/novo")
     public String formNovo(Model model) {
         model.addAttribute("consulta", new Consulta());
         Iterable<Cliente> clientes = clienteRepository.findAll();
@@ -68,7 +68,22 @@ public class ConsultaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(@ModelAttribute Consulta consulta, RedirectAttributes attrs) {
+    public String salvar(@ModelAttribute Consulta consulta,
+                        @RequestParam Long cliente,
+                        @RequestParam Long pet,
+                        @RequestParam Long veterinario,
+                        RedirectAttributes attrs) {
+        Cliente clienteObj = clienteRepository.findById(cliente)
+                .orElseThrow(() -> new IllegalArgumentException("Cliente inválido: " + cliente));
+        Pet petObj = petRepository.findById(pet)
+                .orElseThrow(() -> new IllegalArgumentException("Pet inválido: " + pet));
+        Veterinario veterinarioObj = veterinarioRepository.findById(veterinario)
+                .orElseThrow(() -> new IllegalArgumentException("Veterinário inválido: " + veterinario));
+
+        consulta.setCliente(clienteObj);
+        consulta.setPet(petObj);
+        consulta.setVeterinario(veterinarioObj);
+
         consultaRepository.save(consulta);
         attrs.addFlashAttribute("mensagem", "Consulta salva com sucesso!");
         return "redirect:/consultas/listar";
@@ -119,18 +134,6 @@ public class ConsultaController {
         mv.addObject("consultas", consultas);
         mv.addObject("veterinario", veterinario);
         return mv;
-    }
-
-    @GetMapping("/nova")
-    public String novaConsulta(Model model) {
-        model.addAttribute("consulta", new Consulta());
-        Iterable<Cliente> clientes = clienteRepository.findAll();
-        Iterable<Pet> pets = petRepository.findAll();
-        Iterable<Veterinario> veterinarios = veterinarioRepository.findAll();
-        model.addAttribute("clientes", clientes);
-        model.addAttribute("pets", pets);
-        model.addAttribute("veterinarios", veterinarios);
-        return "consultas/cadastrar";
     }
 
 }

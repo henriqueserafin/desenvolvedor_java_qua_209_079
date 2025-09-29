@@ -1,37 +1,115 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="https://thymeleaf.org" xmlns:layout="https://ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Cadastrar Consulta</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/output.css}">
 </head>
 <body class="bg-gray-100">
 <header th:replace="~{modules/navbar :: navbar}"></header>
 
-<main class="max-w-xl mx-auto mt-8 bg-white p-6 rounded shadow-md">
-    <h1 class="text-2xl font-bold mb-6">Cadastrar Consulta</h1>
+<main class="min-h-screen">
+<div class="max-w-xl mx-auto mt-8 bg-white p-6 rounded shadow-md">
+    <h1 class="text-2xl font-bold mb-6" th:text="${consulta.idConsulta != null ? 'Editar Consulta' : 'Cadastrar Consulta'}">Cadastrar Consulta</h1>
 
-    <form th:action="@{/consultas}" th:object="${consulta}" method="post" class="space-y-4">
-        <input type="datetime-local" th:field="*{data}" class="w-full border p-2 rounded" />
-        <textarea th:field="*{descricao}" placeholder="Descrição" class="w-full border p-2 rounded"></textarea>
+    <form th:action="@{/consultas/salvar}" th:object="${consulta}" method="post" class="space-y-4">
+        <input type="hidden" th:field="*{idConsulta}" />
+        
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Data e Hora</label>
+            <input type="datetime-local" th:field="*{data}" class="w-full border p-2 rounded" required />
+        </div>
 
-        <select th:field="*{pet}" class="w-full border p-2 rounded">
-            <option th:each="p : ${pets}" th:value="${p}" th:text="${p.nome}"></option>
-        </select>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Descrição</label>
+            <textarea th:field="*{descricao}" placeholder="Descrição da consulta" class="w-full border p-2 rounded h-20" required></textarea>
+        </div>
 
-        <select th:field="*{cliente}" class="w-full border p-2 rounded">
-            <option th:each="cli : ${clientes}" th:value="${cli}" th:text="${cli.nome}"></option>
-        </select>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Cliente</label>
+            <select id="clienteSelect" name="cliente" class="w-full border p-2 rounded" required onchange="filtrarPets()">
+                <option value="" disabled>Selecione o Cliente</option>
+                <option th:each="cli : ${clientes}"
+                        th:value="${cli.idCliente}"
+                        th:text="${cli.nome}"
+                        th:selected="${consulta.cliente != null && consulta.cliente.idCliente == cli.idCliente}">
+                </option>
+            </select>
+        </div>
 
-        <select th:field="*{veterinario}" class="w-full border p-2 rounded">
-            <option th:each="v : ${veterinarios}" th:value="${v}" th:text="${v.nome}"></option>
-        </select>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Pet</label>
+            <select id="petSelect" name="pet" class="w-full border p-2 rounded" required>
+                <option value="" disabled selected>Primeiro selecione um cliente</option>
+                <option th:each="p : ${pets}"
+                        th:value="${p.idPet}"
+                        th:text="${p.nome + ' (' + p.especie + ')'}"
+                        th:data-cliente="${p.proprietario.idCliente}"
+                        th:selected="${consulta.pet != null && consulta.pet.idPet == p.idPet}"
+                        class="pet-option"
+                        style="display: none;">
+                </option>
+            </select>
+        </div>
 
-        <div class="flex justify-between mt-4">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Veterinário</label>
+            <select name="veterinario" class="w-full border p-2 rounded" required>
+                <option value="" disabled>Selecione o Veterinário</option>
+                <option th:each="v : ${veterinarios}"
+                        th:value="${v.idVeterinario}"
+                        th:text="${v.nome + ' - ' + v.especialidade}"
+                        th:selected="${consulta.veterinario != null && consulta.veterinario.idVeterinario == v.idVeterinario}">
+                </option>
+            </select>
+        </div>
+
+        <div class="flex justify-between mt-6">
             <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">Salvar</button>
-            <a href="/consultas" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancelar</a>
+            <a href="/consultas/listar" class="px-4 py-2 bg-gray-400 text-white rounded hover:bg-gray-500">Cancelar</a>
         </div>
     </form>
+</div>
 </main>
+
+<script>
+function filtrarPets() {
+    const clienteSelect = document.getElementById('clienteSelect');
+    const petSelect = document.getElementById('petSelect');
+    const clienteSelecionado = clienteSelect.value;
+    
+    // Limpa seleção atual de pet
+    petSelect.value = '';
+    
+    // Esconde todas as opções de pet
+    const petOptions = petSelect.querySelectorAll('.pet-option');
+    petOptions.forEach(option => {
+        option.style.display = 'none';
+        option.disabled = true;
+    });
+    
+    if (clienteSelecionado) {
+        // Mostra apenas pets do cliente selecionado
+        petOptions.forEach(option => {
+            if (option.getAttribute('data-cliente') === clienteSelecionado) {
+                option.style.display = 'block';
+                option.disabled = false;
+            }
+        });
+        
+        petSelect.querySelector('option[value=""]').textContent = 'Selecione o Pet';
+    } else {
+        petSelect.querySelector('option[value=""]').textContent = 'Primeiro selecione um cliente';
+    }
+}
+
+// Inicializa a filtragem quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    const clienteSelect = document.getElementById('clienteSelect');
+    if (clienteSelect.value) {
+        filtrarPets();
+    }
+});
+</script>
 
 <footer th:replace="~{modules/footer :: footer}"></footer>
 </body>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="https://thymeleaf.org" xmlns:layout="https://ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Lista de Clientes</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/output.css}">
 </head>
 <body class="bg-gray-100">
 <header th:replace="~{modules/navbar :: navbar}"></header>
 
-<main class="max-w-6xl mx-auto mt-8">
+<main class="max-w-6xl mx-auto mt-8 min-h-screen">
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-bold">Clientes</h1>
         <a href="/clientes/novo" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Novo Cliente</a>
@@ -21,6 +21,7 @@
             <th class="px-4 py-2">Email</th>
             <th class="px-4 py-2">Telefone</th>
             <th class="px-4 py-2">Endereço</th>
+            <th class="px-4 py-2 text-center">Ações</th>
         </tr>
         </thead>
         <tbody>
@@ -30,6 +31,19 @@
             <td class="px-4 py-2" th:text="${cliente.email}"></td>
             <td class="px-4 py-2" th:text="${cliente.telefone}"></td>
             <td class="px-4 py-2" th:text="${cliente.endereco}"></td>
+            <td class="px-4 py-2 text-center">
+                <div class="flex justify-center space-x-2">
+                    <a th:href="@{/clientes/editar/{id}(id=${cliente.idCliente})}" 
+                       class="px-3 py-1 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600">
+                        Alterar
+                    </a>
+                    <a th:href="@{/clientes/deletar/{id}(id=${cliente.idCliente})}" 
+                       class="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                       onclick="return confirm('Tem certeza que deseja deletar este cliente?')">
+                        Deletar
+                    </a>
+                </div>
+            </td>
         </tr>
         </tbody>
     </table>

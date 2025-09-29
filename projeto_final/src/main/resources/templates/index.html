@@ -5,35 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VetCare - Sistema Veterinário</title>
-  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-  <link href="/css/output.css" rel="stylesheet" />
+  <link rel="stylesheet" th:href="@{/css/output.css}">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gradient-to-br from-blue-50 to-green-50 min-h-screen">
-  <!-- Header -->
+<body class="bg-gray-50">
+
   <header th:replace="~{modules/navbar :: navbar}"></header>
 
-  <!-- Main Content -->
-  <main class="container mx-auto px-6 py-12">
-    <!-- Welcome Section -->
-    <div class="text-center mb-12">
-      <h2 class="text-4xl font-bold text-gray-800 mb-4">Sistema de Gestão Veterinária</h2>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Gerencie sua clínica veterinária de forma eficiente com nosso sistema completo
+  <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl font-extrabold text-gray-900 mb-4">
+        <i class="fas fa-heart text-red-500 mr-4"></i>VetCare
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Sistema completo para gestão de clínicas veterinárias.
+        Gerencie seus clientes, pets, veterinários e consultas de forma simples e eficiente.
       </p>
     </div>
 
-    <!-- CRUD Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+    <!-- Main Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
       <!-- Pets Card -->
-      <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border-t-4 border-blue-500">
+      <div
+        class="bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 p-6 border-t-4 border-blue-500">
         <div class="text-center">
           <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-            <i class="fas fa-dog text-2xl text-blue-600"></i>
+            <i class="fas fa-paw text-2xl text-blue-600"></i>
           </div>
           <h3 class="text-xl font-semibold text-gray-800 mb-2">Pets</h3>
-          <p class="text-gray-600 mb-4">Cadastro e gerenciamento de animais</p>
+          <p class="text-gray-600 mb-4">Cadastro de animais</p>
           <div class="space-y-2">
             <a href="/pets"
               class="block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
@@ -99,13 +101,13 @@
             <i class="fas fa-calendar-alt text-2xl text-orange-600"></i>
           </div>
           <h3 class="text-xl font-semibold text-gray-800 mb-2">Consultas</h3>
-          <p class="text-gray-600 mb-4">Agendamento e histórico</p>
+          <p class="text-gray-600 mb-4">Agendamento de consultas</p>
           <div class="space-y-2">
             <a href="/consultas"
               class="block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
               <i class="fas fa-list mr-2"></i>Listar
             </a>
-            <a href="/consultas/nova"
+            <a href="/consultas/novo"
               class="block bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-300">
               <i class="fas fa-plus mr-2"></i>Agendar
             </a>
@@ -119,20 +121,20 @@
       <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Resumo do Sistema</h3>
       <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div class="text-center">
-          <div class="text-3xl font-bold text-blue-600 mb-2">127</div>
+          <div class="text-3xl font-bold text-blue-600 mb-2" th:text="${totalPets}">0</div>
           <div class="text-gray-600">Pets Cadastrados</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-green-600 mb-2">89</div>
+          <div class="text-3xl font-bold text-green-600 mb-2" th:text="${totalClientes}">0</div>
           <div class="text-gray-600">Clientes Ativos</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-purple-600 mb-2">12</div>
+          <div class="text-3xl font-bold text-purple-600 mb-2" th:text="${totalVeterinarios}">0</div>
           <div class="text-gray-600">Veterinários</div>
         </div>
         <div class="text-center">
-          <div class="text-3xl font-bold text-orange-600 mb-2">45</div>
-          <div class="text-gray-600">Consultas Hoje</div>
+          <div class="text-3xl font-bold text-orange-600 mb-2" th:text="${totalConsultas}">0</div>
+          <div class="text-gray-600">Consultas</div>
         </div>
       </div>
     </div>
@@ -141,38 +143,75 @@
     <div class="bg-white rounded-xl shadow-lg p-8">
       <h3 class="text-2xl font-bold text-gray-800 mb-6">Atividades Recentes</h3>
       <div class="space-y-4">
-        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+        
+        <!-- Consultas Recentes -->
+        <div th:each="consulta : ${consultasRecentes}" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+          <div class="bg-orange-100 w-10 h-10 rounded-full flex items-center justify-center">
+            <i class="fas fa-calendar text-orange-600"></i>
+          </div>
+          <div class="flex-1">
+            <p class="font-semibold text-gray-800">Consulta agendada</p>
+            <p class="text-gray-600 text-sm" th:text="${consulta.pet.nome + ' - ' + consulta.descricao + ' com Dr(a). ' + consulta.veterinario.nome}">
+              Pet - Descrição com Veterinário
+            </p>
+          </div>
+          <div class="text-gray-500 text-sm" th:text="${#temporals.format(consulta.data, 'dd/MM/yyyy HH:mm')}">
+            Data
+          </div>
+        </div>
+        
+        <!-- Pets Recentes -->
+        <div th:each="pet : ${petsRecentes}" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
           <div class="bg-blue-100 w-10 h-10 rounded-full flex items-center justify-center">
             <i class="fas fa-plus text-blue-600"></i>
           </div>
           <div class="flex-1">
             <p class="font-semibold text-gray-800">Novo pet cadastrado</p>
-            <p class="text-gray-600 text-sm">Rex - Golden Retriever cadastrado por Maria Silva</p>
+            <p class="text-gray-600 text-sm" th:text="${pet.nome + ' - ' + pet.especie + ' cadastrado por ' + pet.proprietario.nome}">
+              Nome - Espécie cadastrado por Proprietário
+            </p>
           </div>
-          <div class="text-gray-500 text-sm">2 min atrás</div>
+          <div class="text-gray-500 text-sm">Recente</div>
         </div>
-
-        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+        
+        <!-- Clientes Recentes -->
+        <div th:each="cliente : ${clientesRecentes}" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
           <div class="bg-green-100 w-10 h-10 rounded-full flex items-center justify-center">
-            <i class="fas fa-calendar text-green-600"></i>
+            <i class="fas fa-user-plus text-green-600"></i>
           </div>
           <div class="flex-1">
-            <p class="font-semibold text-gray-800">Consulta agendada</p>
-            <p class="text-gray-600 text-sm">Mimi - Consulta de rotina com Dr. João</p>
+            <p class="font-semibold text-gray-800">Novo cliente cadastrado</p>
+            <p class="text-gray-600 text-sm" th:text="${cliente.nome + ' - ' + cliente.email}">
+              Nome - Email
+            </p>
           </div>
-          <div class="text-gray-500 text-sm">15 min atrás</div>
+          <div class="text-gray-500 text-sm">Recente</div>
         </div>
-
-        <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+        
+        <!-- Veterinários Recentes -->
+        <div th:each="veterinario : ${veterinariosRecentes}" class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
           <div class="bg-purple-100 w-10 h-10 rounded-full flex items-center justify-center">
             <i class="fas fa-user-md text-purple-600"></i>
           </div>
           <div class="flex-1">
             <p class="font-semibold text-gray-800">Veterinário cadastrado</p>
-            <p class="text-gray-600 text-sm">Dra. Deide Costa - Especialista em felinos</p>
+            <p class="text-gray-600 text-sm" th:text="${veterinario.nome + ' - ' + veterinario.especialidade}">
+              Nome - Especialidade
+            </p>
           </div>
-          <div class="text-gray-500 text-sm">1 hora atrás</div>
+          <div class="text-gray-500 text-sm">Recente</div>
         </div>
+        
+        <!-- Mensagem quando não há atividades -->
+        <div th:if="${#lists.isEmpty(consultasRecentes) and #lists.isEmpty(petsRecentes) and #lists.isEmpty(clientesRecentes) and #lists.isEmpty(veterinariosRecentes)}" 
+             class="text-center py-8">
+          <div class="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-info-circle text-2xl text-gray-400"></i>
+          </div>
+          <p class="text-gray-500">Nenhuma atividade recente encontrada</p>
+          <p class="text-gray-400 text-sm mt-2">Comece cadastrando alguns clientes, pets ou veterinários!</p>
+        </div>
+        
       </div>
     </div>
   </main>

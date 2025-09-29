@@ -1,40 +1,55 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-br" xmlns:th="https://thymeleaf.org" xmlns:layout="https://ultraq.net.nz/thymeleaf/layout">
 <head>
     <title>Lista de Consultas</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/output.css}">
 </head>
 <body class="bg-gray-100">
 <header th:replace="~{modules/navbar :: navbar}"></header>
 
-<main class="max-w-6xl mx-auto mt-8">
-    <div class="flex justify-between items-center mb-6">
-        <h1 class="text-2xl font-bold">Consultas</h1>
-        <a href="/consultas/novo" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Nova Consulta</a>
+<main class="min-h-screen">
+    <div class="max-w-6xl mx-auto mt-8">
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl font-bold">Consultas</h1>
+            <a href="/consultas/novo" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">+ Nova Consulta</a>
+        </div>
+
+        <table class="table-auto w-full bg-white shadow-md rounded border">
+            <thead class="bg-gray-200 text-left">
+            <tr>
+                <th class="px-4 py-2">Data</th>
+                <th class="px-4 py-2">Descrição</th>
+                <th class="px-4 py-2">Pet</th>
+                <th class="px-4 py-2">Cliente</th>
+                <th class="px-4 py-2">Veterinário</th>
+                <th class="px-4 py-2 text-center">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${consultas}" class="border-t">
+                <td class="px-4 py-2" th:text="${#temporals.format(c.data, 'dd/MM/yyyy HH:mm')}"></td>
+                <td class="px-4 py-2" th:text="${c.descricao}"></td>
+                <td class="px-4 py-2" th:text="${c.pet.nome}"></td>
+                <td class="px-4 py-2" th:text="${c.cliente.nome}"></td>
+                <td class="px-4 py-2" th:text="${c.veterinario.nome}"></td>
+                <td class="px-4 py-2 text-center">
+                    <div class="flex justify-center space-x-2">
+                        <a th:href="@{/consultas/editar/{id}(id=${c.idConsulta})}" 
+                        class="px-3 py-1 bg-yellow-500 text-white text-sm rounded hover:bg-yellow-600">
+                            Alterar
+                        </a>
+                        <a th:href="@{/consultas/deletar/{id}(id=${c.idConsulta})}" 
+                        class="px-3 py-1 bg-red-500 text-white text-sm rounded hover:bg-red-600"
+                        onclick="return confirm('Tem certeza que deseja deletar esta consulta?')">
+                            Deletar
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-
-    <table class="table-auto w-full bg-white shadow-md rounded border">
-        <thead class="bg-gray-200 text-left">
-        <tr>
-            <th class="px-4 py-2">Data</th>
-            <th class="px-4 py-2">Descrição</th>
-            <th class="px-4 py-2">Pet</th>
-            <th class="px-4 py-2">Cliente</th>
-            <th class="px-4 py-2">Veterinário</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="c : ${consultas}" class="border-t">
-            <td class="px-4 py-2" th:text="${#temporals.format(c.data, 'dd/MM/yyyy HH:mm')}"></td>
-            <td class="px-4 py-2" th:text="${c.descricao}"></td>
-            <td class="px-4 py-2" th:text="${c.pet.nome}"></td>
-            <td class="px-4 py-2" th:text="${c.cliente.nome}"></td>
-            <td class="px-4 py-2" th:text="${c.veterinario.nome}"></td>
-        </tr>
-        </tbody>
-    </table>
 </main>
-
 <footer th:replace="~{modules/footer :: footer}"></footer>
 </body>
 </html>
